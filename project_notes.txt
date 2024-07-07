@@ -1,0 +1,6 @@
+Hi everyone,
+Just a couple of afterthoughts regarding the programming projects related to tree decompositions.
+
+For testing, feel free to use a library to compute tree decompositions, such as https://doc.sagemath.org/html/en/reference/graphs/sage/graphs/graph_decompositions/tree_decomposition.html
+For DP algorithms, you can assume that a tree decomposition is given as input, but it doesn't have to be rooted or nice. If you want to implement the DP on nice TDs, convert and root the input TD as appropriate. Those of you implementing TD algorithms, feel free to add a flag to output a nice TD.
+Of course, you can also implement DP on general, non-nice TDs, that shouldn't be so much harder and could perform slightly better.
