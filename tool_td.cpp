@@ -206,6 +206,7 @@ int read_graph_from_file(string data[MAX_ROWS][2]){
     file.close();
 
     // Print the data stored in the 2D array
+    cout << "Graph edges: " << endl;
     for (int i = 0; i < row; i++) {
         for (int j = 0; j < 2; j++) {
             cout << data[i][j] << flush;
@@ -218,6 +219,7 @@ int read_graph_from_file(string data[MAX_ROWS][2]){
 }
 
 unordered_map<string, node*> new_td(string data[100][3]){
+    cout << "Tree Decomposition: " << endl;
     unordered_map<string, node*> td;
     for(int i = 0; i < MAX_ROWS; i++){
         if(data[i][0].empty() && data[i][1].empty()){
