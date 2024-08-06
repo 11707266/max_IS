@@ -352,6 +352,14 @@ int main()
     
 
     case_distinction(td[root_index], graph);
+    vector<string> lis = td[root_index]->lis_map["b"];
+
+    cout << "largest independent set found: " << endl;
+    cout << lis.size() << endl;
+    for(string a : lis)
+    {
+        cout << a << endl;
+    }
 
 
 

@@ -375,6 +375,7 @@ void forget_node(node *node,  unordered_map<string,string> graph)
         node->lis_map[vector_to_string(subset)] = res;
         node->liss_map[vector_to_string(subset)] = max(node->left->liss_map[vector_to_string(subset)],node->left->liss_map[vector_to_string(subset_with_v)]);
 
+        cout << vector_to_string(subset) << endl;
         /*for(string a: res)
         {
             cout << a << " ";
@@ -504,3 +505,24 @@ void case_distinction(node *root, unordered_map<string,string> graph)
     
 }
 
+void find_max_IS(node *root, unordered_map<string,string> graph)
+{
+    vector<string> verteces_in_bag = split(root->data, ";");
+    int n = verteces_in_bag.size();
+    case_distinction(root, graph);
+    cout << "ISs found for graph based on TD: " << endl;
+    for (int i = (1 << n); i > 0; i--) {
+        vector<string> subset;
+        for (int j = 0; j < n; j++) {
+            if (i & (1 << j)) {
+                subset.push_back(verteces_in_bag[j]);
+            }
+        }
+
+        vector<string> is_found = root->lis_map[vector_to_string(subset)];
+        for(string is : is_found)
+        {
+            cout << is << endl;
+        }
+    }
+}
