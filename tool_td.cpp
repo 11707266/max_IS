@@ -50,7 +50,7 @@ string print_tree(node *root, bool do_indent = false) {
 
     
     // i tried very long to  make this print function work
-    // with my original example it did in fact work, but now since introducint the hashmap, which is not even used here, it just show erractic behaviour which i cannot explain
+    // with my original example it did in fact work, but now since introducing the hashmap, which is not even used here, it just show erractic behaviour which i cannot explain
     // when i add additional output for debugging it at least prints all the nodes but partly splits up the data (the vertices in a bag), which are just stored as a string together
     // i tried adding flush everywhere to avoid buffering issues, but it did not help
     // even after a lot of googling i could not find a solution
@@ -351,16 +351,16 @@ int main()
     */
     
 
-    case_distinction(td[root_index], graph);
+    find_max_IS(td[root_index], graph);
     vector<string> lis = td[root_index]->lis_map["b"];
 
-    cout << "largest independent set found: " << endl;
+   /*  cout << "largest independent set found: " << endl;
     cout << lis.size() << endl;
     for(string a : lis)
     {
         cout << a << endl;
     }
-
+ */
 
 
 

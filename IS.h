@@ -139,6 +139,8 @@ void leaf_node(node *node,  unordered_map<string,string> graph)
             continue;
         }*/
 
+        cout << "subset: " << vector_to_string(subset) << endl; 
+
         if(check_if_subset_is_IS(subset, graph))
         {
             node->lis_map[vector_to_string(subset)] = subset;
@@ -150,6 +152,8 @@ void leaf_node(node *node,  unordered_map<string,string> graph)
             node->liss_map[vector_to_string(subset)] = 0;
         }
         
+        cout << "IS for subset " << vector_to_string(subset) << endl;
+        cout << vector_to_string(node->lis_map[vector_to_string(subset)]) << endl;
         
         
 
@@ -275,6 +279,9 @@ void introduce_node(node *node,  unordered_map<string,string> graph)
                 node->liss_map[vector_to_string(subset)] = 0;
             }
         }
+
+        cout << "IS for subset " << vector_to_string(subset) << endl;
+        cout << vector_to_string(node->lis_map[vector_to_string(subset)]) << endl;
         
 
     }
@@ -372,15 +379,17 @@ void forget_node(node *node,  unordered_map<string,string> graph)
             }
         }
 
+       /*  cout << "v1: " << vector_to_string(v1) << endl;
+        cout << "v2: " << vector_to_string(v2) << endl;
+        cout << "v1 union v2: " << vector_to_string(res) << endl; */
+
         node->lis_map[vector_to_string(subset)] = res;
         node->liss_map[vector_to_string(subset)] = max(node->left->liss_map[vector_to_string(subset)],node->left->liss_map[vector_to_string(subset_with_v)]);
 
+        cout << "IS for subset " << vector_to_string(subset) << endl;
         cout << vector_to_string(subset) << endl;
-        /*for(string a: res)
-        {
-            cout << a << " ";
-        }*/
-        
+        cout << vector_to_string(subset_with_v) << endl;
+        cout << vector_to_string(node->lis_map[vector_to_string(subset)]) << endl;
         
 
     }
@@ -445,7 +454,8 @@ void join_node(node *node,  unordered_map<string,string> graph)
         node->lis_map[vector_to_string(subset)] = res;
         node->liss_map[vector_to_string(subset)] = node->left->liss_map[vector_to_string(subset)] + node->left->liss_map[vector_to_string(subset)] - subset.size();
 
-
+        cout << "IS for subset " << vector_to_string(subset) << endl;
+        cout << vector_to_string(node->lis_map[vector_to_string(subset)]) << endl;
     }
 
 
@@ -469,7 +479,7 @@ void case_distinction(node *root, unordered_map<string,string> graph)
     // until we reach the leaf nodes
     if(root->left == NULL && root->right == NULL)
     {
-        cout << "leaf node " << root->data << endl; 
+        cout << "######### leaf node " << root->data << endl; 
         leaf_node(root,graph);
     }
 
@@ -480,13 +490,13 @@ void case_distinction(node *root, unordered_map<string,string> graph)
     {
         if(root->data.length() > root->left->data.length()){
         
-            cout << "introduce node " << root->data << endl;
+            cout << "-------- introduce node " << root->data << endl;
             introduce_node(root, graph);
             // Mt(U) := Mt′(U∖{v}) + 1
         }
         else if (root->data.length() < root->left->data.length())
         {
-            cout << "forget node " << root->data << endl;
+            cout << "--------- forget node " << root->data << endl;
             forget_node(root, graph);
         }
         else{
@@ -499,7 +509,7 @@ void case_distinction(node *root, unordered_map<string,string> graph)
     if(root->left && root->right)
     {
         // join node
-        cout << "join node " << root->data << endl;
+        cout << "--------- join node " << root->data << endl;
         join_node(root, graph);
     }
     
@@ -519,6 +529,7 @@ void find_max_IS(node *root, unordered_map<string,string> graph)
             }
         }
 
+        cout << vector_to_string(subset) << endl;
         vector<string> is_found = root->lis_map[vector_to_string(subset)];
         for(string is : is_found)
         {
